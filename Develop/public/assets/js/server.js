@@ -17,14 +17,13 @@ app.get("/api/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "notes.html"));
 });
 
+// fs.readFileAsync(db.json); // or something
+
+
 
 // app.get("/api/characters", function(req, res) {
 //     return res.json(characters);
 // });
-
-
-
-
 
 // app.get("/api/characters/:character", function(req, res) {
   
