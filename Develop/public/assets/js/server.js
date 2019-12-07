@@ -1,32 +1,69 @@
+// =============================================================
+const express = require("express");
+const router = require("./router");
+// const apiRoutes = require("./routes/apiRoutes");
 
-let path = require("path");
-let express = require("express");
+// do I need these?
+// const htmlRoutes = require("./routes/htmlRoutes");
 
-let app = express();
-let PORT = process.env.PORT || 3000;
-app.use(express.urlencoded({ extended: true }));
+
+// Initialize the app and create a port
+const app = express();
+const PORT = process.env.PORT || 3000;
+// Set up body parsing, static, and route middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
+
+
+app.use("/", router);
+app.use("/notes", router);
+app.use("/api/notes", router);
+// app.use("/api", apiRoutes);
+// app.use("/", htmlRoutes);
+
+// Start the server on the port
+app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
 
 
 
-app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
-});
 
-app.get("/api/notes", function(req, res) {
-    res.sendFile(path.join(__dirname, "notes.html"));
-});
+
+
+
+
+
+
+
+
+
+
+// // my old stuff:
+// let path = require("path");
+// let express = require("express");
+// let app = express();
+// let PORT = process.env.PORT || 3000;
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
+
+
+// app.get("/", function(req, res) {
+//     res.sendFile(path.join(__dirname, "index.html"));
+// });
+
+// app.get("/api/notes", function(req, res) {
+//     res.sendFile(path.join(__dirname, "notes.html"));
+// });
+
+
+
+
 
 // fs.readFileAsync(db.json); // or something
-
-
-
 // app.get("/api/characters", function(req, res) {
 //     return res.json(characters);
 // });
-
 // app.get("/api/characters/:character", function(req, res) {
-  
 //     const chosen = req.params.character;
 //     console.log(chosen);
 //     const chosenOne = characters.filter(obj => {
@@ -40,28 +77,15 @@ app.get("/api/notes", function(req, res) {
 //     };
 // });
 
-
-
 // app.post("/api/characters", function(req, res) {
 //     // req.body hosts is equal to the JSON post sent from the user
 //     // This works because of our body parsing middleware
 //     var newCharacter = req.body;
-  
 //     // Using a RegEx Pattern to remove spaces from newCharacter
 //     // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
 //     newCharacter.routeName = newCharacter.name.replace(/\s+/g, "").toLowerCase();
-  
 //     console.log(newCharacter);
-  
 //     characters.push(newCharacter);
-  
 //     res.json(newCharacter);
 // });
 
-
-
-
-// =============================================================
-app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
-});
