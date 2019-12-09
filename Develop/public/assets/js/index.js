@@ -4,7 +4,6 @@ let $saveNoteBtn = $(".save-note");
 let $newNoteBtn = $(".new-note");
 let $noteList = $(".list-container .list-group");
 
-
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
 
@@ -110,8 +109,8 @@ let renderNoteList = function(notes) {
 
   let noteListItems = [];
 
-  for (var i = 0; i < notes.length; i++) {
-    let note = notes[i];
+  notes.forEach((val, i) => {
+    let note = val;
 
     let $li = $("<li class='list-group-item'>").data(note);
     let $span = $("<span>").text(note.title);
@@ -121,7 +120,7 @@ let renderNoteList = function(notes) {
 
     $li.append($span, $delBtn);
     noteListItems.push($li);
-  }
+  });
 
   $noteList.append(noteListItems);
 };
