@@ -35,7 +35,7 @@ router.post('/notes', (req, res) => {
 });
 
 
-// DELETE data by ID
+// DELETE by ID
 router.delete("/notes/:id", function(req, res) {
     console.log("route: api delete by id");
     fs.readFile(path.join(__dirname, '../../db/db.json'), 'utf8', (err,data)  => {
